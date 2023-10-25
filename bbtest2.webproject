@@ -1,0 +1,41 @@
+{
+  "manifest": {
+    "$schema": "urn:x-bloomberg-com:AppPortal:WebApplicationManifest",
+    "is-package": true,
+    "package": {
+      "package-id": "APP.WEB.PACK.BBTEST2",
+      "entry": "index.html",
+      "remote-access": true
+    },
+    "content-rules": [
+      {
+        "bloomberg-api-access": [
+          "SingleSignOnAPI",
+          "TerminalConnectAPI",
+          "ApplicationAPI",
+          "MessagingAPI"
+        ],
+        "bloomberg-services": {
+          "//blp/mktdata": {},
+          "//blp/refdata": {},
+          "//blp/apiflds": {},
+          "//blp/emapisvc": {},
+          "//blp/emapisvc_beta": {},
+          "//blp/emsx.history": {},
+          "//blp/security-list": {},
+          "//blp/instruments": {}
+        }
+      }
+    ],
+    "context-menu": "ShowDevToolsAndBuiltIn",
+    "proxy": {
+      "type": "win-http"
+    }
+  },
+"run-settings": {
+    "mode": "manual",
+    "number-of-securities": 0,
+    "debug-enabled": true,
+    "debug-port": 9222
+  }
+}

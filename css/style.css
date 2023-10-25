@@ -1,0 +1,308 @@
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #e0e0e0;
+  padding-bottom: 0px;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+}
+
+.viewport {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #e0e0e0;
+  padding-bottom: 0px;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.xScaleLabel {
+  text-anchor: start;
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: black;
+}
+
+.yScaleLabel0 {
+  text-anchor: end;
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: black;
+}
+
+.yScaleLabel1 {
+  text-anchor: end;
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: black;
+}
+
+.yScaleLabel2 {
+  text-anchor: end;
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: black;
+}
+
+.yScaleLabel3 {
+  text-anchor: end;
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: black;
+}
+
+.wheelLabel {
+  text-anchor: start;
+  font-family: sans-serif;
+  font-size: 12px;
+  fill: black;
+}
+
+*::selection {
+    background: transparent;
+}
+
+*::-moz-selection {
+    background: transparent;
+}
+
+*::-webkit-selection {
+    background: transparent;
+}
+
+div {
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+div img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin:auto;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex; /* or inline-flex */
+}
+
+#input1 {
+  position: absolute;
+  opacity: 0%;
+}
+
+#chart-div {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0;
+  display: block;
+  overflow: hidden;
+  position: absolute;
+}
+
+#chart-div.top0 {
+  top: 0px;
+  height: 100%;
+}
+
+#chart-div.top1 {
+  top: 30%;
+  height: 70%;
+}
+
+#chart-div.left0 {
+  left: 0px;
+}
+
+#chart-div.width00 {
+  width: 100%;
+}
+
+#chart-div.width01 {
+  width: calc(100% - 80px);
+}
+
+#chart-div.left1 {
+  left: 112px;
+}
+
+#chart-div.width10 {
+  width: calc(100% - 112px);
+}
+
+#chart-div.width11 {
+  width: calc(100% - 194px);
+}
+
+#chart-div.left2 {
+  left: 35%;
+}
+
+#chart-div.width20 {
+  width: 65%;
+}
+
+#chart-div.width21 {
+  width: calc(65% - 80px);
+}
+
+#chart-div.left3 {
+  left: calc(35% + 112px);
+}
+
+#chart-div.width30 {
+  width: calc(65% - 112px);
+}
+
+#chart-div.width31 {
+  width: calc(65% - 194px);
+}
+
+#left-bar-div {
+  width: 112px;
+  opacity: 1.00;
+  position: absolute;
+}
+
+#left-bar-div.top0 {
+  top: 0%;
+  height: 100%;
+}
+
+#left-bar-div.top1 {
+  top: calc(30%);
+  height: 70%;
+}
+
+#left-bar-div.left0 {
+  left: -112px;
+}
+
+#left-bar-div.left1 {
+  left: 0px;
+}
+
+#left-bar-div.left2 {
+  left: 35%;
+}
+
+#list-div {
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100%;
+  opacity: 1.00;
+  position: absolute;
+}
+
+#list-div.close {
+    /*-webkit-transition: left 0.4s;
+    transition: left 0.4s; */
+    left: -220px;
+}
+
+#list-div.open1 {
+    /*-webkit-transition: left 0.4s;
+    transition: left 0.4s; */
+    left: 0px;
+    width: 35%;
+    height: 100%;
+}
+
+#list-div.open2 {
+    /*-webkit-transition: left 0.4s;
+    transition: left 0.4s;*/
+    left: 0px;
+    width: 100%;
+    height: 30%;
+}
+
+
+#right-bar-div {
+  left: calc(100% - 80px);
+  width: 80px;
+  position: absolute;
+  background-color: #e0e0e0;
+}
+
+#right-bar-div.close {
+  width: 0px;
+}
+
+#right-bar-div.open {
+  width: 80px;
+}
+
+#right-bar-div.size1 {
+  top: 0%;
+  height: calc(100% - 80px);
+}
+
+#right-bar-div.size2 {
+  top: 30%;
+  height: calc(70% - 80px);
+}
+
+
+#left-button-div {
+  top: calc(100% - 80px);
+  width: 80px;
+  height: 80px;
+  position: absolute;
+}
+
+#left-button-div.left0 {
+  left: 0px;
+}
+#left-button-div.left1 {
+  left: 0px;
+}
+#left-button-div.left2 {
+  left: 35%;
+}
+#left-button-div.left3 {
+  left: 35%;
+}
+
+#right-button-div {
+  top: calc(100% - 80px);
+  left: calc(100% - 80px);
+  width: 80px;
+  height: 80px;
+  position: absolute;
+}
+
+.ember-application .no-ember {
+  display: none;
+}
+
+li {
+  height: 30px;
+  border-bottom: 1px solid #aaa;
+  font-family:"Helvitica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 18px;
+  line-height: 30px;
+  padding: 4px;
+  position: relative;
+}
+
+  
