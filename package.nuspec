@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>app.web.pack.bloomberg.bbtest2</id>
+        <version>1.0.0</version>
+        <title>BBTest2</title>
+        <authors>authors</authors>
+        <description>description</description>
+        <copyright>Copyright 2018</copyright>
+    </metadata>
+    <files>
+        <file src="**/*.*" target="lib/net45"
+            exclude=".git/**/*.*;Releases/**/*.*;app.webproject"
+        />
+    </files>
+</package>

@@ -33,7 +33,7 @@ function yyyymmdd(dateIn) {
 
 async function getBars() {
     let session = await BB.Apps.Data.createSession();
-    
+   
     var ticker = "AAPL US Equity";
 
     var currentDate = new Date();
