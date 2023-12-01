@@ -1,14 +1,52 @@
 var chart = null;
-var priceRecs= [];
+var SymbolTopic;
 
-function initializeChart() {
+var inputText = "AAPL US Equity";
+
+async function initializeChart() {
     console.log("initialize chart");
+    console.trace();
     chart = new Chart("chart");
     chart.initialize();
-    getBars();
+    getBars(inputText);
+    //getUserId();
+    instruments = await getInstruments('msft');
+    console.log(JSON.stringify(instruments));
+
+    symbolTopic = PubSub.subscribe('SYMBOL', symbolChange);
+
+    d3.select("#input1").on("input", function() {
+        var text1 = d3.select("#input1").property("value");
+        //console.log("On " +  "|" + text1 + "|" + d3.event.shiftKey + " " + d3.event.altKey + " " + d3.event.ctrlKey);
+        inputText = text1.toUpperCase();
+        PubSub.publish('TEXT', inputText);
+      });
+    
+    d3.select("#input1").on("keypress", keyPress);
 }
 
-function loadBars() {
+window.addEventListener('focusout', function(e)
+{
+  //var text1 = d3.select("#input1").property("value");
+  if (inputText != "") {
+    //inputText = text1.toUpperCase();
+    //console.log("PUBLISH " + inputText);
+    PubSub.publish('SYMBOL', inputText);
+    d3.select("#input1").property("value", "");
+  }
+});
+
+var symbolChange = async function(msg, symbol) {
+    var instruments = await getInstruments(symbol);
+    if (instruments.length > 0) {
+        var text = instruments[0].security;
+        symbol = text.replace('<equity>', ' Equity'); // todo replace other yellow keys
+    }
+    console.log(symbol);
+    getBars(symbol);
+}
+
+function loadBars(ticker, priceRecs) {
     var count = priceRecs.length;
     var bars = [];
     for(p of priceRecs) {
@@ -20,8 +58,14 @@ function loadBars() {
         var bar = new Bar(date, open, high, low, close);
         bars.push(bar);
     }
-    console.log("loadBars");
-    chart.loadBars("AAPL US Equity", "D", 0, bars);
+    console.log("loadBars " + ticker);
+    chart.loadBars(ticker, "D", 0, bars);
+}
+
+async function getUserId() 
+{
+    var iam = await BB.Apps.Terminal.runFunction("IAM", 1);
+    console.log(JSON.stringify(iam));
 }
 
 function yyyymmdd(dateIn) {
@@ -31,10 +75,37 @@ function yyyymmdd(dateIn) {
     return String(10000*yyyy + 100*mm + dd); // Leading zeros for mm and dd
   }
 
-async function getBars() {
+async function getInstruments(text) {
     let session = await BB.Apps.Data.createSession();
-   
-    var ticker = "AAPL US Equity";
+
+    console.log("getInstruments");
+
+    var instruments = [];
+
+    var request = {
+        query: text,
+        yellowKeyFilter: 'YK_FILTER_NONE',
+        languageOverride: 'LANG_OVERRIDE_NONE',
+        maxResults: 100,
+    };
+
+    await session.request("//blp/instruments", "instrumentListRequest", request,
+        function*() {
+            var instrumentList;
+            while(instrumentList = yield) {
+                var instrumentData = instrumentList.results;
+                 instrumentData.forEach(function(instrument){
+                    instruments.push(instrument);               
+                 });
+             }
+         }
+    );
+
+    return instruments;
+}  
+
+async function getBars(ticker) {
+    let session = await BB.Apps.Data.createSession();
 
     var currentDate = new Date();
     var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -53,12 +124,12 @@ async function getBars() {
     session.request("//blp/refdata", "HistoricalDataRequest", request,
         function*() {
             var histData;
+            var priceRecs= [];
             while(histData = yield) {
-                //console.info(JSON.stringify(histData, undefined, 4));
-                //console.log("inside receiver");
                 var fieldVals = histData.securityData.fieldData;
-                fieldVals.forEach( function(priceRec){
-                    priceRecs.push(new Array(new Date(priceRec.date.year,
+                fieldVals.forEach(function(priceRec){
+                    priceRecs.push(new Array(
+                    new Date(priceRec.date.year,
                     priceRec.date.month,
                     priceRec.date.day),
                     priceRec.PX_OPEN,
@@ -68,8 +139,25 @@ async function getBars() {
                 });
                 //console.log(JSON.stringify(priceRecs));
             }
-            loadBars();
+            loadBars(ticker, priceRecs);
         }
     );
 }
 
+async function keyPress() {
+  var key = d3.event.keyCode;
+  var text = d3.select("#input1").property("value");
+  //console.log("Press " + key + " |" + text + "| " + d3.event.shiftKey + " " + d3.event.altKey + " " + d3.event.ctrlKey);
+  if (key == 13) {
+    instruments = await getInstruments(inputText);
+    if (instruments.length > 0) {
+        var symbol = instruments[0].security;
+        text = symbol.replace('<equity>', ' Equity'); // todo replace other yellow keys
+    }
+    //console.log("PUBLISH " + inputText);
+    PubSub.publish('SYMBOL', text);
+    var input = d3.select("#input1");
+    input.property("value", "");
+    return false;
+  }
+}

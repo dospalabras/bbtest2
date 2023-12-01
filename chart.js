@@ -78,48 +78,9 @@ function Chart(name) {
 
   //getTestData();
 
-  // function loadBars(symbol, interval, start, end) {
-  //   let request = new XMLHttpRequest();
-  //   let text = "http://67.202.71.101/techchart/data/bar0.php";
-  //   text += "?s=" + symbol;
-  //   text += "&i=" + interval;
-  //   text += "&b=" + start;
-  //   text += "&e=" + end;
-  //   text += "&c=" + phpHash(symbol, interval, start, end);
-  //   request.open("GET", text, false);
-  //   request.send(null);
-
-  //   let data = request.responseText.split("\n");
-  //   data.splice(0, 0, "1", "1", "2");
-  //   setBars(data);
-  // }
-
-  // function phpHash(symbol, interval, start, end) {
-  //   let s = symbol + interval + start + end;
-  //   let nRes = 0;
-  //   let sRes = "";
-  //   let i = 0;
-  //   for (i = 0; i < s.length; i++) {
-  //     nRes += ((s.charCodeAt(i) + 72) * (i + 1 + (s.charCodeAt(i) % 7)));
-  //   }
-  //   for (i = 0; i < s.length; i++) {
-  //     nRes += ((s.charCodeAt(i) + 59) * (s.length - i - 1 + (s.charCodeAt(i) % 9)));
-  //   }
-  //   nRes += 8291;
-  //   nRes *= 7;
-  //   nRes -= 97;
-  //   nRes *= 11;
-  //   nRes += 4289;
-  //   while (nRes)
-  //   {
-  //     sRes += String.fromCharCode(65 + Math.floor(nRes % 10));
-  //     nRes = Math.floor(nRes / 10);
-  //   }
-  //   return sRes;
-  // }
-
   this.loadBars = function(symbol, interval, session, input) {
 
+    text1 = "";
     chartSymbol = symbol;
     chartInterval = getInterval(interval, session);
 

@@ -21,6 +21,7 @@
   <script type="application/javascript" src='./chart.js'></script>
   <script type="module" src='bb-apps-data.js'></script>
   <script type="module" src="bb-apps-authentication.js"></script>
+  <script type="module" src="bb-apps-terminal.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/d3js/3.5.17/d3.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
@@ -29,6 +30,9 @@
 </head>
 
  <div class="section">
+  <form autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onSubmit="return false;">
+    <input type='text' id='input1' autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+  </form>
   <div class="container">
       <div id="chart-div"></div>
   </div>
