@@ -2,8 +2,9 @@
   "manifest": {
     "$schema": "urn:x-bloomberg-com:AppPortal:WebApplicationManifest",
     "url": "https://salmon-sea-0a938180f.4.azurestaticapps.net/",
-      "content-rules": [
+    "content-rules": [
       {
+        "url-pattern": "https://salmon-sea-0a938180f.4.azurestaticapps.net/",
         "bloomberg-api-access": [
           "SingleSignOnAPI",
           "TerminalConnectAPI",
@@ -32,5 +33,8 @@
     "number-of-securities": 0,
     "debug-enabled": true,
     "debug-port": 9222
+  },
+  "publish-settings": {
+    "progid": "APP.WEB.DEMARK"
   }
 }
