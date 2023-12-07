@@ -107,6 +107,8 @@ async function getInstruments(text) {
 async function getBars(ticker) {
     let session = await BB.Apps.Data.createSession();
 
+    console.log(session);
+
     var currentDate = new Date();
     var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     var startDate = new Date(endDate);
@@ -137,7 +139,7 @@ async function getBars(ticker) {
                     priceRec.PX_LOW,
                     priceRec.PX_LAST));
                 });
-                //console.log(JSON.stringify(priceRecs));
+                console.log(JSON.stringify(priceRecs));
             }
             loadBars(ticker, priceRecs);
         }

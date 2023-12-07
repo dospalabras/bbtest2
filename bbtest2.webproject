@@ -1,13 +1,8 @@
 {
   "manifest": {
     "$schema": "urn:x-bloomberg-com:AppPortal:WebApplicationManifest",
-    "is-package": true,
-    "package": {
-      "package-id": "APP.WEB.PACK.BBTEST2",
-      "entry": "index.html",
-      "remote-access": true
-    },
-    "content-rules": [
+    "url": "https://salmon-sea-0a938180f.4.azurestaticapps.net/",
+      "content-rules": [
       {
         "bloomberg-api-access": [
           "SingleSignOnAPI",
@@ -32,7 +27,7 @@
       "type": "win-http"
     }
   },
-"run-settings": {
+  "run-settings": {
     "mode": "manual",
     "number-of-securities": 0,
     "debug-enabled": true,
