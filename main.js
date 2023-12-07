@@ -40,7 +40,7 @@ var symbolChange = async function(msg, symbol) {
     var instruments = await getInstruments(symbol);
     if (instruments.length > 0) {
         var text = instruments[0].security;
-        symbol = text.replace('<equity>', ' Equity'); // todo replace other yellow keys
+        symbol = symbol.replace('<', ' ').replace('>', '').toUpperCase(); 
     }
     console.log(symbol);
     getBars(symbol);
@@ -152,7 +152,7 @@ async function keyPress() {
     instruments = await getInstruments(inputText);
     if (instruments.length > 0) {
         var symbol = instruments[0].security;
-        text = symbol.replace('<equity>', ' Equity'); // todo replace other yellow keys
+        text = symbol.replace('<', ' ').replace('>', '').toUpperCase(); 
     }
     //console.log("PUBLISH " + inputText);
     PubSub.publish('SYMBOL', text);
